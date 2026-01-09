@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+
+  app:
+    build: .
+    container_name: medical_app
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://medical_app_user:medical123@mongodb:27017/medical_db
+    command: python src/connection.py
+
+volumes:
+  mongo_data:

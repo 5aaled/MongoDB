@@ -1,0 +1,14 @@
+# Ignore data folder
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments (shown as "External Libraries" in PyCharm)
+venv/
+.venv/
+env/
+
+# PyCharm project settings
+.idea/
