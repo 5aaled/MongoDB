@@ -99,3 +99,12 @@ can be queried efficiently.
 3. Install Python dependencies:
    ```bash
    pip install -r requirements.txt
+## 8. Dockerized Deployment
+
+The project can be executed using Docker and Docker Compose.
+Two containers are used:
+- MongoDB container with persistent storage using Docker volumes
+- Python application container for data migration
+
+Docker volumes ensure that MongoDB data persists across container restarts.
+Environment variables are used to configure database connections securely.

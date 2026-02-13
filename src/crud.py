@@ -1,9 +1,9 @@
-from itertools import groupby
-from pprint import pprint
-
 from pymongo import MongoClient
 from connection import df
 print(df.shape)
+# check negative Values
+invalid_billing = df[df["billing_amount"] < 0]
+print(invalid_billing.shape)    # the result should be ZEro
 
 
 client = MongoClient("mongodb://localhost:27017/")
@@ -115,6 +115,7 @@ pipeline7 = [ {"$group": {"_id": "$medical_condition","total_billing": {"$sum": 
              {"$sort": {"total_billing": -1}},
              {"$limit": 5}]
 db_sort11 =   list(patients.aggregate(pipeline7))
+
 
 
 
