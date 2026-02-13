@@ -12,6 +12,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    networks:
+      - medical_network
 
   app:
     build: .
@@ -21,6 +23,13 @@ services:
     environment:
       MONGO_URI: mongodb://medical_app_user:medical123@mongodb:27017/medical_db
     command: python src/connection.py
+    networks:
+      - medical_network
 
 volumes:
   mongo_data:
+
+networks:
+  medical_network:
+    driver: bridge
+
